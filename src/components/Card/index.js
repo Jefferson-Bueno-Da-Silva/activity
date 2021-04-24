@@ -15,8 +15,8 @@ export default function Card({ data, index, listIndex }) {
     item: { index, listIndex, },
     type: "CARD",
     collect: monitor => ({
-      isDragging: !!monitor.isDragging()
-    })
+      isDragging: !!monitor.isDragging(),
+    }),
   })
 
   /**
@@ -38,9 +38,12 @@ export default function Card({ data, index, listIndex }) {
       const draggedIndex = item.index;
       // Item alvo
       const targetIndex = index;
+
+      // acabou
+      const isOver = monitor.isOver({ shallow: false });
       
       //Não faz nada se arrastar em cima do mesmo item;
-      if(draggedIndex === targetIndex && draggedListIndex === targetListIndex ){
+      if(draggedIndex === targetIndex){
         return;
       }
 
@@ -64,13 +67,15 @@ export default function Card({ data, index, listIndex }) {
       if(draggedIndex > targetIndex && draggedTop > targetCenter ){
         return;
       }
-      
+
+      if(!isOver){
+        return;
+      }
       //faz a movimentação do item;
       move(draggedListIndex, targetListIndex, draggedIndex, targetIndex);
 
       item.index = targetIndex;
       item.listIndex = targetListIndex;
-
     }
   });
 
@@ -80,12 +85,12 @@ export default function Card({ data, index, listIndex }) {
   return (
     <Container ref={ref} isDragging={isDragging} >
       <header>
-        { data.labels && data.labels.map(label => <Label key={label} color={label} /> )}
+        { data && data.labels && data.labels.map(label => <Label key={label} color={label} /> )}
       </header>
       <p>
-        {data.content}
+        { data && data.content}
       </p>
-      { data.user && <img src={data.user} alt="" /> }
+      { data && data.user && <img src={data.user} alt="" /> }
       
     </Container>
   )

@@ -10,7 +10,7 @@ import {Container} from './styles';
 export default function Board({ data }) {
   // quando lists mudar, muda o valor do contexto e todos os ligares se atualizam
   // Nota: utilizar isto para atualizar as informações no banco
-  const [ lists, setLists ] = useState(data)
+  const [ lists, setLists ] = useState(data);
 
   //trocar os index na api;
   function move(fromList, toList, from, to){
@@ -22,8 +22,18 @@ export default function Board({ data }) {
     }));
   }
 
+  function moveToList(fromList, hoverIndex, from ){
+    
+    setLists(produce(lists, draft => {
+      // Pega informações do card arrastado;
+      const dragged =  draft[fromList].cards[from];
+      draft[fromList].cards.splice(from, 1);
+      draft[hoverIndex].cards.splice(from, 0, dragged);
+    }));
+  }
+
   return (
-    <BoardContext.Provider value={{ lists, move }} >
+    <BoardContext.Provider value={{ lists , move, moveToList }} >
       <Container>
         {lists.map( (list, index) => <List key={list.title} index={index} data={list} /> )}
       </Container>
