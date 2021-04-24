@@ -1,25 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react';
+import GlobalStyle from './styles/global';
+import Header from './components/Header';
+import Board from './components/Board';
+
+import api from "./services/firebaseApi";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  const [ todo, setTodo ] = useState(false);
+    
+  let getTodos = async () => {
+    let response = await api.get();
+    setTodo(response.data);
+  }
+  useEffect(() => {
+    getTodos();
+  }, [])
+  if(!todo){
+    return(
+      <>
+      <Header/>
+      <div>Carregando Conteúdo</div>
+      <GlobalStyle />
+      </>
+    );
+  }else{
+    return (
+      <>
+        <Header/>
+        <Board Todo={todo} />
+        <GlobalStyle />
+      </>
+    );
+  }
 }
 
 export default App;
