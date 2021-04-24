@@ -30,7 +30,7 @@ function App() {
     return (
       <DndProvider  backend={HTML5Backend} >
         <Header/>
-        <Board Todo={todo} />
+        <Board data={todo} />
         <GlobalStyle />
       </DndProvider>
     );

@@ -6,29 +6,29 @@ import Card from '../Card';
 
 import {Container} from './styles'
 
-export default function List( { data } ) {
-  if(!data){
-    return(
-      <>
-      Carregando Conteúdo
-      </>
-    );
-  }else{
-    return (
-      <Container >
-        <header>
-          <h2>{data.title}</h2>
-          {data.creatable && (
-            <button type="button" >
-              <MdAdd size={24} color="#FFF" />
-            </button>
-          )}
-        </header>
+export default function List( { data, index: listIndex } ) {
+  return (
+    <Container >
+      <header>
+        <h2>{data.title}</h2>
+        {data.creatable && (
+          <button type="button" >
+            <MdAdd size={24} color="#FFF" />
+          </button>
+        )}
+      </header>
 
-        <ul>
-          { data.cards.map( card => <Card key={card.id} data={card} /> ) }
-        </ul>
-      </Container>
-    );
-  }
+      <ul>
+        { data.cards.map( (card, index) => (
+            <Card 
+              key={card.id} 
+              listIndex={listIndex}
+              index={index} 
+              data={card} 
+            />)
+          ) 
+        }
+      </ul>
+    </Container>
+  );
 }
