@@ -24,9 +24,19 @@ export default function Board({ data }) {
   function refresh(){
     const db = new firebaseServices();
     db.onTodos().on('value', (snapshot) => {
-      const data = snapshot.val();
+
+    const data = snapshot.val();
+
+      data.map( (value, index) =>{
+        if(value.cards === undefined){
+          return value.cards = [];
+        }
+        return value;
+      } )
+
       setLists(data);
     });
+    
   }
 
   

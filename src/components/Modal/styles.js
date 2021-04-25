@@ -15,9 +15,59 @@ export const ModalDiv = styled.div`
 
 export const Form = styled.div`
   display: flex;
-  flex: 1;
-  align-items: center;
+  flex-direction: column;
+  flex:1;
   justify-content: center;
+
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+
+  input[type=text], select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+label {
+  padding: 12px 12px 12px 0;
+  display: inline-block;
+}
+
+input[type=submit] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  float: right;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+.col-25 {
+  float: left;
+  width: 25%;
+  margin-top: 6px;
+}
+
+.col-75 {
+  float: left;
+  width: 75%;
+  margin-top: 6px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
 `;
 
 
@@ -25,8 +75,8 @@ export const Container = styled.div`
 
   background: #FFF;
   color: #000;
-  width: 90%;
-  height: 90%;
+  width: 80%;
+  height: 70%;
   border-radius: 20px;
   cursor: normal;
   display:flex;
@@ -37,7 +87,7 @@ export const Container = styled.div`
     justify-content : center;
     align-items: center;
     height: 42px;
-    width: 100%
+    width: 100%;
 
     h2 {
       font-weight: 500;
@@ -61,14 +111,54 @@ export const Container = styled.div`
 
   .close{
     position: absolute;
-    top: 7%;
-    right: 7%;
+    top: 16%;
+    right: 12%;
+    height: 30px;
+    width: 30px
   }
   .save{
     position: absolute;
-    bottom: 7%;
-    right: 7%;
+    bottom: 16%;
+    right: 11%;
     width: 100px;
     height: 42px;
+    color: #FFF;
+  }
+  .cancel{
+    background-color:#FFF;
+    position: absolute;
+    bottom: 16%;
+    right: 24%;
+    width: 100px;
+    height: 42px;
+    color: #FFF;
+    color: #000;
+    border: 2px solid #3b5bfd;
+  }
+
+  @media screen and (max-width: 600px) {
+    .col-25, .col-75, input[type=submit] {
+      width: 100%;
+      margin-top: 0;
+    }
+    .save{
+      position: absolute;
+      bottom: 16%;
+      right: 11%;
+      width: 70px;
+      height: 42px;
+      color: #FFF;
+    }
+    .cancel{
+      background-color:#FFF;
+      position: absolute;
+      bottom: 16%;
+      right: 32%;
+      width: 70px;
+      height: 42px;
+      color: #FFF;
+      color: #000;
+      border: 2px solid #3b5bfd;
+    }
   }
 `;

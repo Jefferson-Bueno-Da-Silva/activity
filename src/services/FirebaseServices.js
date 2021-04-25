@@ -1,16 +1,17 @@
 import firebase from '../configs/firebaseConfigs';
 
 export default class firebaseServices {
-  async creatTodo(title){
+  async creatTodo(data, users){
+    const {description, title, user} = data
     const index = await this.getTodos("/0/cards");
-    const todoRef = firebase.database().ref(`todos/0/cards/${index.length}`);
+    const indexUsers = index ? index.length : 0;
+    const todoRef = firebase.database().ref(`todos/0/cards/${indexUsers}`);
+
     todoRef.update({
-      content: title,
-      id: index.length + 1,
-      labels: [
-        "#54e1f7"
-      ],
-      user: "https://avatars.githubusercontent.com/u/62211295"
+      title: title,
+      content: description,
+      id: (indexUsers + 1),
+      user: user
     });
   }
 
@@ -36,5 +37,16 @@ export default class firebaseServices {
   onTodos(){
     var starCountRef = firebase.database().ref(`todos`);
     return starCountRef;
+  }
+
+  async getUsers(){
+    const todoRef = firebase.database().ref(`users`);
+    return (
+      await todoRef.get().then( (snapshot) => {
+        if (snapshot.exists()) {
+          return snapshot.val()
+        }
+      } )
+    );
   }
 }
