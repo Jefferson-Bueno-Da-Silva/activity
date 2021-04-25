@@ -123,7 +123,13 @@ export const Container = styled.div`
     width: 100px;
     height: 42px;
     color: #FFF;
+    
+    border-radius: 18px;
+    background: #3b5bfd;
+    border: 0;
+    cursor: pointer;
   }
+  
   .cancel{
     background-color:#FFF;
     position: absolute;
@@ -133,7 +139,8 @@ export const Container = styled.div`
     height: 42px;
     color: #FFF;
     color: #000;
-    border: 2px solid #3b5bfd;
+    border: 2px solid #3b5bfd;   
+    border-radius: 18px;
   }
 
   @media screen and (max-width: 600px) {
@@ -148,6 +155,10 @@ export const Container = styled.div`
       width: 70px;
       height: 42px;
       color: #FFF;
+      border-radius: 18px;
+      background: #3b5bfd;
+      border: 0;
+      cursor: pointer;
     }
     .cancel{
       background-color:#FFF;
@@ -159,6 +170,7 @@ export const Container = styled.div`
       color: #FFF;
       color: #000;
       border: 2px solid #3b5bfd;
+      border-radius: 18px;
     }
   }
 `;

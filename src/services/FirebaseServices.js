@@ -1,7 +1,7 @@
 import firebase from '../configs/firebaseConfigs';
 
 export default class firebaseServices {
-  async creatTodo(data, users){
+  async creatTodo(data){
     const {description, title, user} = data
     const index = await this.getTodos("/0/cards");
     const indexUsers = index ? index.length : 0;
@@ -11,6 +11,18 @@ export default class firebaseServices {
       title: title,
       content: description,
       id: (indexUsers + 1),
+      user: user
+    });
+  }
+
+  async updateTodo(index, listIndex , data){
+    const {description, title, user} = data
+    const todoRef = firebase.database().ref(`todos/${listIndex}/cards/${index}`);
+
+    todoRef.update({
+      title: title,
+      content: description,
+      id: (index + 1),
       user: user
     });
   }
