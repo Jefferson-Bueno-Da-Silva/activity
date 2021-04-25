@@ -2,7 +2,7 @@ import React from 'react';
 
 import AuthServices from '../../services/AuthService';
 
-import {Button} from './styles';
+import {Button} from '../../styles/Button';
 
 export default function SingOut(){
   function Logout(){
@@ -10,6 +10,6 @@ export default function SingOut(){
     auth.singOut();
   }
   return(
-    <Button onClick={ () => Logout() } >Sair</Button>
+    <Button top="3%" right="2%" onClick={ () => Logout() } >Sair</Button>
   );
 }

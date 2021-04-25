@@ -6,6 +6,7 @@ import BoardContext from '../Board/context';
 import {Container, ModalDiv, Form} from './styles';
 // SERVICES
 import firebaseServices from "../../services/FirebaseServices";
+import { AuthContext } from '../../Auth/AuthContext';
 
 export default function Modal({ id="modal", onClose = () => {}, initialState }){
   const [title, setTitle] = useState({
@@ -33,6 +34,7 @@ export default function Modal({ id="modal", onClose = () => {}, initialState }){
   }, [edit]);
 
   const { refresh } = useContext(BoardContext);
+  const { usuario } = useContext(AuthContext);
 
   const handleOnChange = (e) => {
     const state = Object.assign({}, title);
@@ -52,10 +54,15 @@ export default function Modal({ id="modal", onClose = () => {}, initialState }){
   const createTodoSync = () => {
     const db = new firebaseServices();
     if(edit){
-      db.updateTodo(edit.index, edit.listIndex , title);
+      db.updateTodo( edit.listIndex , title );
+
+      db.saveLogs(usuario.email, usuario.uid, title, "updated", "updated" );
+
       setEdit(false);
     }else{
       db.creatTodo(title);
+
+      db.saveLogs(usuario.email, usuario.uid, title, "Created" , "Created" );
     }
     refresh();
     onClose();

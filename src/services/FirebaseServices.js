@@ -1,6 +1,7 @@
 import firebase from '../configs/firebaseConfigs';
 
 export default class firebaseServices {
+  // CREATE:
   async creatTodo(data){
     const {description, title, user} = data
     const index = await this.getTodos("/0/cards");
@@ -15,14 +16,27 @@ export default class firebaseServices {
     });
   }
 
-  async updateTodo(index, listIndex , data){
-    const {description, title, user} = data
+  saveLogs( email, uid, card, fromName, toName ){
+    const todoRef = firebase.database().ref(`logs/`);
+    let json = JSON.parse(JSON.stringify(card));
+
+    todoRef.push({
+      card : json,
+      email,
+      fromName,
+      toName,
+      uid
+    });
+  }
+  // UPDATE :
+
+  async updateTodo( listIndex , data ){
+    const {description, title, index, user} = data
     const todoRef = firebase.database().ref(`todos/${listIndex}/cards/${index}`);
 
     todoRef.update({
       title: title,
       content: description,
-      id: (index + 1),
       user: user
     });
   }
@@ -35,6 +49,7 @@ export default class firebaseServices {
     todoRef.set( data );
   }
 
+  // GET :
   async getTodos(ref) {
     const todoRef = firebase.database().ref(`todos${ref}`);
     return (
@@ -44,11 +59,6 @@ export default class firebaseServices {
         }
       } )
     );
-  }
-  
-  onTodos(){
-    var starCountRef = firebase.database().ref(`todos`);
-    return starCountRef;
   }
 
   async getUsers(){
@@ -61,4 +71,11 @@ export default class firebaseServices {
       } )
     );
   }
+
+  // Listener
+  onTodos(){
+    var starCountRef = firebase.database().ref(`todos`);
+    return starCountRef;
+  }
+
 }

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import produce from 'immer';
 //Components
 import List from '../List';
@@ -6,6 +6,7 @@ import List from '../List';
 import {Container} from './styles';
 // Context
 import BoardContext from './context';
+import {AuthContext} from '../../Auth/AuthContext';
 // Services
 import firebaseServices from '../../services/FirebaseServices';
 
@@ -14,12 +15,19 @@ export default function Board({ data }) {
   // Nota: utilizar isto para atualizar as informações no banco
   let [ lists, setLists ] = useState(data);
   let [ isUpdate, setIsUpdate ] = useState(false);
+
+  const { usuario } = useContext(AuthContext);
   
   useEffect(() => {
     const db = new firebaseServices();
     db.updateOrder(lists);
     setIsUpdate(false);
   }, [isUpdate]);
+
+  function saveLogs(card, fromName, toName ){
+    const db = new firebaseServices();
+    db.saveLogs(usuario.email, usuario.uid, card, fromName, toName );
+  }
   
   function refresh(){
     const db = new firebaseServices();
@@ -39,11 +47,9 @@ export default function Board({ data }) {
     
   }
 
-  
-
   //trocar os index na api;
   function move(fromList, toList, from, to){
-    setIsUpdate(true);
+    setIsUpdate(true);    
     setLists(produce(lists, (draft) => {
       // Pega informações do card arrastado;
       const dragged =  draft[fromList].cards[from];
@@ -53,6 +59,13 @@ export default function Board({ data }) {
   }
   
   function moveToList(fromList, hoverIndex, from ){
+
+    saveLogs( 
+      lists[fromList].cards[from], 
+      lists[fromList].title, 
+      lists[hoverIndex].title 
+    );
+    
     setIsUpdate(true);
     setLists(produce(lists, draft => {
       // Pega informações do card arrastado;
@@ -63,7 +76,7 @@ export default function Board({ data }) {
   }
 
   return (
-    <BoardContext.Provider value={{ lists , move, moveToList, refresh }} >
+    <BoardContext.Provider value={{ lists , move, moveToList, refresh, saveLogs }} >
       <Container>
         {lists.map( (list, index) => <List key={list.title} index={index} data={list} /> )}
       </Container>
