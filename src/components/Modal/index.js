@@ -30,8 +30,6 @@ export default function Modal({ id="modal", onClose = () => {} }){
       <Container>
         <header>
           <h2>Add Item</h2>
-            
-          <h2/>
           <button className="close" onClick={onClose} >
             <MdClose size={24} color="#FFF" />
           </button>

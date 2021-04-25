@@ -45,7 +45,7 @@ export default function List( { data, index: listIndex } ) {
       }
 
       moveToList( draggedListIndex, targetListIndex, draggedIndex );
-
+      item.listIndex = targetListIndex;      
     }
   });
 

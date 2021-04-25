@@ -14,6 +14,14 @@ export default class firebaseServices {
     });
   }
 
+  updateOrder( data ){
+    let todoRef = firebase.database().ref("todos");
+    data.map( (value) => {
+      JSON.parse( JSON.stringify(value ) )
+    } )
+    todoRef.set( data );
+  }
+
   async getTodos(ref) {
     const todoRef = firebase.database().ref(`todos${ref}`);
     return (

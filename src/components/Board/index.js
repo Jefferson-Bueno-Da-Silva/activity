@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import produce from 'immer';
 //Components
 import List from '../List';
@@ -12,10 +12,16 @@ import firebaseServices from '../../services/FirebaseServices';
 export default function Board({ data }) {
   // quando lists mudar, muda o valor do contexto e todos os ligares se atualizam
   // Nota: utilizar isto para atualizar as informações no banco
-  const [ lists, setLists ] = useState(data);
-
+  let [ lists, setLists ] = useState(data);
+  let [ isUpdate, setIsUpdate ] = useState(false);
+  
+  useEffect(() => {
+    const db = new firebaseServices();
+    db.updateOrder(lists);
+    setIsUpdate(false);
+  }, [isUpdate]);
+  
   function refresh(){
-    console.log("REFRESH");
     const db = new firebaseServices();
     db.onTodos().on('value', (snapshot) => {
       const data = snapshot.val();
@@ -23,18 +29,21 @@ export default function Board({ data }) {
     });
   }
 
+  
+
   //trocar os index na api;
   function move(fromList, toList, from, to){
-    setLists(produce(lists, draft => {
+    setIsUpdate(true);
+    setLists(produce(lists, (draft) => {
       // Pega informações do card arrastado;
       const dragged =  draft[fromList].cards[from];
       draft[fromList].cards.splice(from, 1);
       draft[toList].cards.splice(to, 0, dragged);
     }));
   }
-
+  
   function moveToList(fromList, hoverIndex, from ){
-    
+    setIsUpdate(true);
     setLists(produce(lists, draft => {
       // Pega informações do card arrastado;
       const dragged =  draft[fromList].cards[from];

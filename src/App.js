@@ -13,9 +13,8 @@ import firebaseServices from "./services/FirebaseServices";
 function App() {
   const [ todo, setTodo ] = useState(false);
   
-  const db = new firebaseServices();
-
   useEffect(() => {
+    const db = new firebaseServices();
     db.onTodos().on('value', (snapshot) => {
     const data = snapshot.val();
       setTodo(data);
