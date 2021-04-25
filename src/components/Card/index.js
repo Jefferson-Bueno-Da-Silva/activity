@@ -5,7 +5,7 @@ import { useDrag, useDrop } from "react-dnd";
 import { MdMoreHoriz } from 'react-icons/md'
 import BoardContext from '../Board/context';
 
-import {Container, Label} from './styles'
+import {Container} from './styles'
 
 export default function Card({ data, index, listIndex }) {
   const ref = useRef();
@@ -87,17 +87,20 @@ export default function Card({ data, index, listIndex }) {
   return (
     <Container ref={ref} isDragging={isDragging} >
       <header>
-        { data && data.labels && data.labels.map(label => <Label key={label} color={label} /> )}
-
         <button className="moreConfigs" >
           <MdMoreHoriz size="25px" />
         </button>
-        
       </header>
+      <h3 className="titleCard">
+        {data.title}
+      </h3>
       <p>
         { data && data.content}
       </p>
-      { data && data.user && <img src={data.user} alt="" /> }
+      { data && data.user && data.user.url && <img src={data.user.url} alt="" /> }
+      <p>
+        { data && data.user && data.user.name && data.user.name }
+      </p>
       
     </Container>
   )

@@ -15,7 +15,8 @@ export const Container = styled.div`
   header {
     position: absolute;
     top: -22px;
-    left: 15px;
+    left: 0;
+    width: 100%;
   }
 
   p{
@@ -28,6 +29,12 @@ export const Container = styled.div`
     height: 24px;
     border-radius: 2px;
     margin-top: 5px;
+  }
+
+  .titleCard{
+    width: 100%;
+    font-size: 15px;
+    margin-bottom: 2%;
   }
 
   ${props => props.isDragging && css`
@@ -45,12 +52,4 @@ export const Container = styled.div`
   ` }
 
 
-`;
-
-export const Label = styled.span`
-  width: 10px;
-  height: 10px;
-  border-radius: 2px;
-  display: inline-block;
-  background: ${props => props.color}
 `;

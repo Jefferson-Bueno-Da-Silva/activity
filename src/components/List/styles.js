@@ -32,20 +32,23 @@ export const Container = styled.div`
 
     .moreConfigs{
       display: flex;
-      position: relative;
+      position: absolute;
+      top: 22%;
+      right: 5px;
       width: 40px;
       height: 5px;
-      margin-left: 220px;
       background: transparent;
       cursor: pointer;
       align-items: center;
       justify-content: center;
     }
+
     .moreConfigs:hover{
-      background: rgb(0,0,0);
+      background: #3b5bfd;
       height: 10px;
       transition: 0.2s;
       color: rgb(255,255,255);
+      border: 1px solid #000;
     }
   }
 
