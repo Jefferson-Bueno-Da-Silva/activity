@@ -19,7 +19,7 @@ export default function Board({ data }) {
     const db = new firebaseServices();
     db.updateOrder(lists);
     setIsUpdate(false);
-  }, [isUpdate]);
+  }, [isUpdate, lists]);
   
   function refresh(){
     const db = new firebaseServices();
