@@ -30,13 +30,13 @@ export const Container = styled.div`
       opacity: 1;
     }
     input[type=submit] {
-      background-color: #4CAF50;
+      background-color: #3b5bfd;
       color: white;
       cursor: pointer;
     }
 
     input[type=submit]:hover {
-      background-color: #45a049;
+      background-color: #0059;
     }
 
     @media screen and (max-width: 650px) {
