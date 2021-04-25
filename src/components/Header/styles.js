@@ -8,5 +8,9 @@ export const Container = styled.div`
   
   display: flex;
   align-items: center;
-  
+  justify-content: center;
+  .iconHeader{
+    margin: 5px;
+    color: #fff;
+  }
 `;

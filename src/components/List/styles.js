@@ -29,6 +29,24 @@ export const Container = styled.div`
       border: 0;
       cursor: pointer;
     }
+
+    .moreConfigs{
+      display: flex;
+      position: relative;
+      width: 40px;
+      height: 5px;
+      margin-left: 220px;
+      background: transparent;
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+    }
+    .moreConfigs:hover{
+      background: rgb(0,0,0);
+      height: 10px;
+      transition: 0.2s;
+      color: rgb(255,255,255);
+    }
   }
 
   ul{

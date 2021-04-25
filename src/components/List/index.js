@@ -1,15 +1,18 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { useDrop } from "react-dnd";
-
+// CONTEXTS
 import BoardContext from '../Board/context';
-
+// ICONS
 import { MdAdd } from 'react-icons/md'
-
-import Card from '../Card';
-
+// STYLES
 import {Container} from './styles'
+// COMPONENTS
+import Card from '../Card';
+import Modal from '../Modal';
 
 export default function List( { data, index: listIndex } ) {
+  const [ isModalVisible, setModalVisible ] = useState(false);
+
   const { moveToList } = useContext(BoardContext);
   /**
    * Se eu estiver arrastando um card da metade para baixo de um card:
@@ -42,20 +45,23 @@ export default function List( { data, index: listIndex } ) {
       }
 
       moveToList( draggedListIndex, targetListIndex, draggedIndex );
-
+      item.listIndex = targetListIndex;      
     }
   });
 
   return (
     <Container ref={dropRef} >
+      
       <header>
         <h2>{data.title}</h2>
         {data.creatable && (
-          <button type="button" >
+          <button onClick={ () => setModalVisible(true) } >
             <MdAdd size={24} color="#FFF" />
           </button>
         )}
+        { isModalVisible && <Modal onClose={() => setModalVisible(false) } /> }
       </header>
+
       <ul>
         { data.cards && data.cards.map( (card, index) => (
             <Card 

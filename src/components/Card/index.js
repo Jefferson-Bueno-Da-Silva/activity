@@ -1,6 +1,8 @@
 import React, { useRef, useContext } from 'react';
 import { useDrag, useDrop } from "react-dnd";
 
+
+import { MdMoreHoriz } from 'react-icons/md'
 import BoardContext from '../Board/context';
 
 import {Container, Label} from './styles'
@@ -86,6 +88,11 @@ export default function Card({ data, index, listIndex }) {
     <Container ref={ref} isDragging={isDragging} >
       <header>
         { data && data.labels && data.labels.map(label => <Label key={label} color={label} /> )}
+
+        <button className="moreConfigs" >
+          <MdMoreHoriz size="25px" />
+        </button>
+        
       </header>
       <p>
         { data && data.content}
