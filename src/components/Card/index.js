@@ -92,7 +92,7 @@ export default function Card({ data, index, listIndex }) {
         </button>
       </header>
       <h3 className="titleCard">
-        {data.title}
+        {data && data.title}
       </h3>
       <p>
         { data && data.content}
