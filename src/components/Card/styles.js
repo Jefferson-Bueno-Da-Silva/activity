@@ -36,6 +36,25 @@ export const Container = styled.div`
     font-size: 15px;
     margin-bottom: 2%;
   }
+  .moreConfigs{
+      display: flex;
+      position: absolute;
+      top: 22%;
+      right: 5px;
+      width: 40px;
+      height: 10px;
+      background: transparent;
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .moreConfigs:hover{
+      background: #3b5bfd;
+      color: #FFF;
+      border: 1px solid #0059;
+      transition: 0.1s;
+    }
 
   ${props => props.isDragging && css`
     border: 2px dashed rgba(0,0,0,0.2);
