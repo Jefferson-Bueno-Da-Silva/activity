@@ -13,4 +13,7 @@ export const Container = styled.div`
     margin: 5px;
     color: #fff;
   }
+  @media only screen and (max-width: 600px) {
+    justify-content: right;
+  }
 `;
