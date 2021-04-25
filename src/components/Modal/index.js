@@ -7,7 +7,7 @@ import {Container, ModalDiv, Form} from './styles';
 // SERVICES
 import firebaseServices from "../../services/FirebaseServices";
 
-export default function Modal({ id="modal", onClose = () => {} }){
+export default function Modal({ id="modal", onClose = () => {}, initialState }){
   const [title, setTitle] = useState({
     title: "",
     description: "",
@@ -17,6 +17,7 @@ export default function Modal({ id="modal", onClose = () => {} }){
     },
   });
   const [ users, setUsers ] = useState();
+  const [ edit, setEdit ] = useState(initialState);
 
   useEffect(() => {
     async function fetchData(){
@@ -25,7 +26,11 @@ export default function Modal({ id="modal", onClose = () => {} }){
       setUsers(JSON.parse(JSON.stringify(user)));
     }
     fetchData();
-  }, []);
+
+    if(edit !== undefined ){
+      setTitle(edit);
+    }
+  }, [edit]);
 
   const { refresh } = useContext(BoardContext);
 
@@ -46,7 +51,11 @@ export default function Modal({ id="modal", onClose = () => {} }){
   }
   const createTodoSync = () => {
     const db = new firebaseServices();
-    db.creatTodo(title, users);
+    if(edit){
+      db.updateTodo(edit.index, edit.listIndex , title);
+    }else{
+      db.creatTodo(title);
+    }
     refresh();
     onClose();
   }
@@ -72,7 +81,13 @@ export default function Modal({ id="modal", onClose = () => {} }){
               <label htmlFor="fname">Titulo</label>
             </div>
             <div className="col-75">
-              <input className="textInput" type="text" id="title" onChange={ handleOnChange } />
+              <input 
+                className="textInput"
+                type="text" 
+                id="title" 
+                onChange={ handleOnChange }
+                value = { title.title }
+              />
             </div>
           </div>
 
@@ -81,7 +96,13 @@ export default function Modal({ id="modal", onClose = () => {} }){
               <label htmlFor="lname">descrição</label>
             </div>
             <div className="col-75">
-              <input className="textInput" type="text" id="description" onChange={ handleOnChange } />
+              <input 
+                className="textInput" 
+                type="text" 
+                id="description" 
+                onChange={ handleOnChange } 
+                value={ title.description }
+              />
             </div>
           </div>
 
@@ -90,9 +111,10 @@ export default function Modal({ id="modal", onClose = () => {} }){
               <label htmlFor="user">usuário responsável</label>
             </div>
             <div className="col-75">
-              <select id="user" name="user" onChange={ handleOnChange } defaultValue="123">
+              <select id="user" name="user" onChange={ handleOnChange } >
 
-                <option id="user" key="0" value="123"></option>
+                <option id="user" key="0" value="123" ></option>
+
                 { !!users 
                 && 
                 users.map( (value, index) => (

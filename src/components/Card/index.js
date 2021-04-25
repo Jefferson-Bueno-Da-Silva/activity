@@ -1,13 +1,15 @@
-import React, { useRef, useContext } from 'react';
+import React, { useRef, useContext, useState } from 'react';
 import { useDrag, useDrop } from "react-dnd";
 
 
 import { MdMoreHoriz } from 'react-icons/md'
 import BoardContext from '../Board/context';
+import Modal from '../Modal';
 
 import {Container} from './styles'
 
 export default function Card({ data, index, listIndex }) {
+  const [ isModalVisible, setModalVisible ] = useState(false);
   const ref = useRef();
   // Buscando o move do contexto
   const { move } = useContext(BoardContext);
@@ -85,9 +87,10 @@ export default function Card({ data, index, listIndex }) {
   dragRef(dropRef(ref));
 
   return (
+    <>
     <Container ref={ref} isDragging={isDragging} >
       <header>
-        <button className="moreConfigs" >
+        <button className="moreConfigs" onClick={ () => setModalVisible(true) } >
           <MdMoreHoriz size="25px" />
         </button>
       </header>
@@ -103,5 +106,24 @@ export default function Card({ data, index, listIndex }) {
       </p>
       
     </Container>
+    { isModalVisible && 
+      <Modal 
+        initialState={{
+          index,
+          listIndex,
+          title: data && data.title,
+          description: data && data.content,
+          user:{
+            name: data && data.user && data.user.name && data.user.name,
+            url: data && data.user && data.user.url
+          }
+        }}
+        
+
+        onClose={() => setModalVisible(false) } 
+
+      /> 
+    }
+    </>
   )
 }
