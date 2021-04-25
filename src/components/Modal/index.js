@@ -53,6 +53,7 @@ export default function Modal({ id="modal", onClose = () => {}, initialState }){
     const db = new firebaseServices();
     if(edit){
       db.updateTodo(edit.index, edit.listIndex , title);
+      setEdit(false);
     }else{
       db.creatTodo(title);
     }
