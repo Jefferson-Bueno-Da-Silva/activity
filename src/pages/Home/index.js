@@ -7,6 +7,8 @@ import GlobalStyle from '../../styles/global';
 //Components
 import Header from '../../components/Header';
 import Board from '../../components/Board';
+import SingOut from '../../components/SingOut';
+
 // Services
 import firebaseServices from "../../services/FirebaseServices";
 
@@ -39,6 +41,7 @@ export default function Home() {
     return (      
       <DndProvider  backend={HTML5Backend} >
         <Header/>
+        <SingOut/>
         <Board data={todo} />
         <GlobalStyle />
       </DndProvider>

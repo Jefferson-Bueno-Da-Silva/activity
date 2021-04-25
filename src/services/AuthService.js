@@ -1,11 +1,12 @@
 import firebase from '../configs/firebaseConfigs';
 
 export default class AuthServices {
-  constructor(){
-    this.auth = firebase.auth();
-  }
   singOut(){
-    this.auth.singOut();
+    firebase.auth().signOut();
+    return;
+  }
+  async singIn(email, senha){
+    await firebase.auth().signInWithEmailAndPassword(email.value, senha.value);
     return;
   }
 }
