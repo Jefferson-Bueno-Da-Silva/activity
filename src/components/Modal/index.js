@@ -48,6 +48,7 @@ export default function Modal({ id="modal", onClose = () => {} }){
     const db = new firebaseServices();
     db.creatTodo(title, users);
     refresh();
+    onClose();
   }
   
   const handleOutsideClick = (e) => {
