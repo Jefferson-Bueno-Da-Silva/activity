@@ -1,16 +1,19 @@
 import React, { useRef, useContext, useState } from 'react';
 import { useDrag, useDrop } from "react-dnd";
-
-
+// Icons
 import { MdMoreHoriz } from 'react-icons/md'
+// Contexto do component pai
 import BoardContext from '../Board/context';
+// Components
 import Modal from '../Modal';
-
+// Styles
 import {Container} from './styles'
 
 export default function Card({ data, index, listIndex }) {
+  // Controle do modal
   const [ isModalVisible, setModalVisible ] = useState(false);
   const ref = useRef();
+
   // Buscando o move do contexto
   const { move } = useContext(BoardContext);
 
@@ -51,19 +54,19 @@ export default function Card({ data, index, listIndex }) {
         return;
       }
 
-      // calculo central do card que recebe o hover
+      // calculo central do card alvo
       // Tamanho do item alvo:
       const targetSize = ref.current.getBoundingClientRect();
       // ponto central
       const targetCenter = ( targetSize.bottom - targetSize.top ) / 2;
       
-      // Quanto do item eu ja arrastei
+      // Quanto do item ja foi arrastado
       const draggedOffset = monitor.getClientOffset();
       // Distancia que um item entrou para dentro de outro
       const draggedTop = draggedOffset.y - targetSize.top;
 
-      //Se o que eu estou arrastando esta antes do alvo
-      //Se o que eu estou arrastando esta depois do alvo
+      //Se o card que eu estou arrastando esta antes do alvo
+      //Se o card que eu estou arrastando esta depois do alvo
       //Garantem que eu não tente arrastar um item para um index que ele ja 
       if(draggedIndex < targetIndex && draggedTop < targetCenter ){
         return;
@@ -75,9 +78,11 @@ export default function Card({ data, index, listIndex }) {
       if(!isOver){
         return;
       }
-      //faz a movimentação do item;
+      
+      //faz a movimentação do item no componente principal (pai);
       move(draggedListIndex, targetListIndex, draggedIndex, targetIndex);
 
+      //atualiza seu index na tela
       item.index = targetIndex;
       item.listIndex = targetListIndex;
     }
@@ -88,12 +93,15 @@ export default function Card({ data, index, listIndex }) {
 
   return (
     <>
+    {/* da a propriedade "arrastavel" para o item */}
     <Container ref={ref} isDragging={isDragging} >
       <header>
+        {/* botão para editar o card */}
         <button className="moreConfigs" onClick={ () => setModalVisible(true) } >
           <MdMoreHoriz size="25px" />
         </button>
       </header>
+      {/* informações do banco no card */}
       <h3 className="titleCard">
         {data && data.title}
       </h3>
@@ -106,6 +114,7 @@ export default function Card({ data, index, listIndex }) {
       </p>
       
     </Container>
+    {/* modal para edição do card */}
     { isModalVisible && 
       <Modal 
         initialState={{
@@ -118,8 +127,7 @@ export default function Card({ data, index, listIndex }) {
             url: data && data.user && data.user.url
           }
         }}
-        
-
+      
         onClose={() => setModalVisible(false) } 
 
       /> 

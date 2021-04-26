@@ -28,8 +28,8 @@ alterou o card: "${logValue[key].card.title}"
 de: "${logValue[key].fromName}"
 para:"${logValue[key].toName}"
 ${Date(logValue[key].created_at)}\n\n`
-
-      );
+    );
+    return key;
     } )
     return strLogs;
   }

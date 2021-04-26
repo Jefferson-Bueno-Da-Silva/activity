@@ -1,7 +1,7 @@
 import React from 'react'
-
+// Icons
 import { MdAssignmentTurnedIn } from 'react-icons/md'
-
+// Styles
 import { Container } from './styles';
 
 export default function Header() {

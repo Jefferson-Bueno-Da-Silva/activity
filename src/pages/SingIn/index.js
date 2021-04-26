@@ -14,14 +14,15 @@ import GlobalStyles from '../../styles/global';
 import Header from "../../components/Header/";
 
 export const SingIn = withRouter( ({ history }) => {
+  // Estado do erro no login
   const [error , setError] = useState(false);
 
+  // Autenticação Firebase
   const loginFunc = useCallback(
     async (event) => {
+      // Não da reload na pagina
       event.preventDefault();
-
       const { email, senha } = event.target.elements;
-
       try {
         await firebase.auth().signInWithEmailAndPassword(email.value, senha.value);
         history.push('/home');
@@ -33,12 +34,13 @@ export const SingIn = withRouter( ({ history }) => {
     [history],
   );
   
+  // Compartilha as informações do usuario com os outros componentes
   const { usuario } = useContext(AuthContext);
-
+  // se o usuario for autenticado
   if(usuario){
     return <Redirect to="/home" />
   }
-
+  // Se não apresenta o erro
   return (
     <>
       <Header/>

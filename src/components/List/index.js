@@ -11,8 +11,9 @@ import Card from '../Card';
 import Modal from '../Modal';
 
 export default function List( { data, index: listIndex } ) {
+  // controle do modal para adicionar cards
   const [ isModalVisible, setModalVisible ] = useState(false);
-
+  // chamado do componente pai
   const { moveToList } = useContext(BoardContext);
   /**
    * Se eu estiver arrastando um card da metade para baixo de um card:
