@@ -33,20 +33,41 @@ Na aplicação deve ser possível:
   - [x] Finalizado
   - [x] Cancelado
 
+![image](https://user-images.githubusercontent.com/62211295/116022301-52029f80-a620-11eb-9ec0-0e8d7f14b0ca.png)
+
+
 - [x] Card:
   - [x] Titulo
   - [x] Descrição
   - [x] Responsável
 
+![image](https://user-images.githubusercontent.com/62211295/116022282-457e4700-a620-11eb-9469-ae4f142a7555.png)
+
 ### Funcionalidades
 
 - [X] Modificar o status de uma atividade
+
+![image](https://user-images.githubusercontent.com/62211295/116022223-27b0e200-a620-11eb-8f20-040992d9a1b3.png)
+
 - [X] Modificar o responsável por uma atividade
+
+![image](https://user-images.githubusercontent.com/62211295/116022250-34353a80-a620-11eb-9c3e-6d3ac0d3ced2.png)
+
+- [X] Na atividade deve ser possível ver o histórico de eventos
+
+![image](https://user-images.githubusercontent.com/62211295/116022357-6c3c7d80-a620-11eb-86a7-f760410c7f05.png)
+
+
+### Autenticação
+
+- [X] A aplicação deve possuir autenticação simples. Pode utilizar a autenticação nativa do Firebase.
+
+![image](https://user-images.githubusercontent.com/62211295/116022159-051ec900-a620-11eb-806d-68269e3b0f54.png)
+
 
 ### Desafio
 
-- [ ] Na atividade deve ser possível ver o histórico de eventos
-  - [ ] Campo descrição terá que realizar um Carga-> funtion usando BigQuery ou Elasticserach para realizar busca diretamente neste campo.
+- [ ] Campo descrição terá que realizar um Carga-> funtion usando BigQuery ou Elasticserach para realizar busca diretamente neste campo.
 
 ## Regras de negócio
 
@@ -57,5 +78,4 @@ A base de dados deve ser Firestore, do Firebase (Google). Para isto pode criar u
 4.Não é necessário utilizar redux, mas pode usar se desejar.
 Pode utilizar um pré-compilador de SASS/SCSS/LESS para o CSS, mas não é obrigatório, no entanto o estilo em sí também será levado em conta,
 6.Pode utilizar Type Script, se não, JS no mínimo ES6.
-7.A aplicação deve possuir autenticação simples. Pode utilizar a autenticação nativa do Firebase.
 9.Insira mais de 1 milhão de registros criando um script de carga e teste com postman este teste lendo de CSV
