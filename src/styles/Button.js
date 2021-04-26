@@ -6,15 +6,20 @@ export const Button = styled.button`
   right: ${props => props.right};
   height: 40px;
   width: 80px;
-  border: 2px solid #3b5bfd;
+  background-color: #7159c1;
+  border-color: #FFF;
+  color: #FFF;
+  border: 2px solid;
   border-radius: 15px;
   font-size: 15px;
   cursor: pointer;
-
+  font-size: 18px;
+  font-weight: bold;
+  /* #7159c1 */
   :hover{
-    background-color: #3b5bfd;
-    border-color: #FFF;
-    color: #FFF;
+    background-color: #FFF;
+    border-color: #3b5bfd;
+    color: #7159c1;
   }
   @media only screen and (max-width: 600px) {
     right: ${props => props.mediaRight };

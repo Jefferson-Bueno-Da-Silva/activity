@@ -19,4 +19,10 @@ export const Container = styled.div`
   @media only screen and (max-width: 600px) {
     justify-content: right;
   }
+  @media only screen and (max-width: 350px) {
+    justify-content: right;
+    h1{
+      display : none;
+    }
+  }
 `;

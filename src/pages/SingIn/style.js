@@ -30,7 +30,7 @@ export const Container = styled.div`
       opacity: 1;
     }
     input[type=submit] {
-      background-color: #3b5bfd;
+      background-color: #7159c1;
       color: white;
       cursor: pointer;
     }

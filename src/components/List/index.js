@@ -15,13 +15,9 @@ export default function List( { data, index: listIndex } ) {
   const [ isModalVisible, setModalVisible ] = useState(false);
   // chamado do componente pai
   const { moveToList } = useContext(BoardContext);
-  /**
-   * Se eu estiver arrastando um card da metade para baixo de um card:
-   * vai depois;
-   * Se estiver arrastando da metade para cima:
-   * Vai antes;
-  */
-   const [, dropRef ] = useDrop({
+
+  // da a propriedade target para o componente
+  const [, dropRef ] = useDrop({
     accept: "CARD",
     // ITEM = CARD QUE ESTA SENDO ARRASTADO, MONITOR = DEVOLVE INFORMAÇÕES SOBRE O QUE ESTA SENDO ARRASTADO.
     hover(item, monitor){

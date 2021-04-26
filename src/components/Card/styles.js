@@ -36,6 +36,7 @@ export const Container = styled.div`
     font-size: 15px;
     margin-bottom: 2%;
   }
+  /* ... */
   .moreConfigs{
       display: flex;
       position: absolute;
@@ -48,14 +49,15 @@ export const Container = styled.div`
       align-items: center;
       justify-content: center;
     }
-
+    /* ... */
     .moreConfigs:hover{
-      background: #3b5bfd;
+      background: #7159c1;
       color: #FFF;
-      border: 1px solid #0059;
+      border: 2px solid #3b5bfd;
       transition: 0.1s;
     }
 
+  /* Recebe a propriedade de segurar e faz o estilo do item que esta sendo segurado */
   ${props => props.isDragging && css`
     border: 2px dashed rgba(0,0,0,0.2);
     padding-top: 31px;
