@@ -22,7 +22,7 @@ export default function ModalLogs({ id="modal", onClose = () => {} }){
 
   // Função para formatar o texto
   function showLogs(){
-    let key = (Object.keys(logValue));
+    let key = (Object.keys( !!logValue ));
     let strLogs = ``;
     key.map( (key) => {
       console.log(logValue[key]);

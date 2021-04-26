@@ -49,10 +49,10 @@ export default class firebaseServices {
 
   updateOrder( data ){
     let todoRef = firebase.database().ref("todos");
-    data.map( (value) => {
-      return JSON.parse( JSON.stringify(value ) )
+    let json = data.map( (value) => {
+      return JSON.parse( JSON.stringify( value ) )
     } )
-    todoRef.set( data );
+    todoRef.set( json );
   }
 
   // GET :
