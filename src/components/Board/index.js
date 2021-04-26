@@ -16,19 +16,25 @@ export default function Board({ data }) {
   let [ lists, setLists ] = useState(data);
   let [ isUpdate, setIsUpdate ] = useState(false);
 
+  //  Usuario co contexto de autenticação
   const { usuario } = useContext(AuthContext);
   
+  // Responsável por manter a tela sincronizada com o firebase
+  // O update manda as informações de tela para o banco
+  // sendo assim o banco sempre esta sincronizado com a tela
   useEffect(() => {
     const db = new firebaseServices();
     db.updateOrder(lists);
     setIsUpdate(false);
   }, [isUpdate]);
 
+  //Salva as ações do log no firebase
   function saveLogs(card, fromName, toName ){
     const db = new firebaseServices();
     db.saveLogs(usuario.email, usuario.uid, card, fromName, toName );
   }
   
+  // refresh da pagina
   function refresh(){
     const db = new firebaseServices();
     db.onTodos().on('value', (snapshot) => {
@@ -47,8 +53,9 @@ export default function Board({ data }) {
     
   }
 
-  //trocar os index na api;
+  // Faz a movimentação dos cards na tela
   function move(fromList, toList, from, to){
+    // Marca o update
     setIsUpdate(true);    
     setLists(produce(lists, (draft) => {
       // Pega informações do card arrastado;
@@ -57,15 +64,15 @@ export default function Board({ data }) {
       draft[toList].cards.splice(to, 0, dragged);
     }));
   }
-  
+  // Faz a movimentação dos cards entre listas na tela, marca o update
   function moveToList(fromList, hoverIndex, from ){
-
-    saveLogs( 
+    // Ações do usuario
+    saveLogs(
       lists[fromList].cards[from], 
       lists[fromList].title, 
       lists[hoverIndex].title 
     );
-    
+    // Marca o update
     setIsUpdate(true);
     setLists(produce(lists, draft => {
       // Pega informações do card arrastado;
@@ -74,7 +81,7 @@ export default function Board({ data }) {
       draft[hoverIndex].cards.splice(from, 0, dragged);
     }));
   }
-
+  // compartilha algumas funções para os filhos do componente.
   return (
     <BoardContext.Provider value={{ lists , move, moveToList, refresh, saveLogs }} >
       <Container>

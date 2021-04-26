@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const ModalDiv = styled.div`
+  /* Involve toda a tela */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -14,7 +15,7 @@ export const ModalDiv = styled.div`
 `;
 
 export const Container = styled.div`
-
+  /* container central */
   background: #FFF;
   color: #000;
   width: 80%;
@@ -26,16 +27,17 @@ export const Container = styled.div`
   align-items: center;
   justify-content: center;
   background-color: #ecf1f8;
-  
+
+  /* estilo dos botões do modal */
   button {
     width: 42px;
     height: 42px;
     border-radius: 18px;
-    background: #3b5bfd;
+    background: #7159c1;
     border: 0;
     cursor: pointer;
   }
-
+  /* botão sair */
   .close{
     position: absolute;
     top: 16%;
@@ -43,16 +45,16 @@ export const Container = styled.div`
     height: 30px;
     width: 30px
   }
-
+  /* text area */
   .textLogs{
     resize: none;
     width: 80%;
     height: 80%;
     font-size: 25px;
   }
-
+  /* responsivo */
   @media screen and (max-width: 600px) {
-    .col-25, .col-75, input[type=submit] {
+    .col-10, .col-90, input[type=submit] {
       width: 100%;
       margin-top: 0;
     }

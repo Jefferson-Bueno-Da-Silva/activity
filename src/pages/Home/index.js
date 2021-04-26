@@ -15,25 +15,31 @@ import firebaseServices from "../../services/FirebaseServices";
 import ModalLogs from '../../components/ModalLogs';
 
 export default function Home() {
+  // Estado iniciar do cards
   const [ todo, setTodo ] = useState(false);
+  // modal dos logs
   const [ isModalVisible, setModalVisible ] = useState(false);
-  
+  // atualiza os cards no primeiro carregamento da tela
   useEffect(() => {
     const db = new firebaseServices();
     db.onTodos().on('value', (snapshot) => {
     const data = snapshot.val();
+    // Se tem listas
       if(data){
+        // se tem cards
         data.map( (value, index) =>{
           if(value.cards === undefined){
             return value.cards = [];
           }
           return value;
         } )
+        // Primero carregamento da pagina os to-do são carregados
         setTodo(data);
       }
     });
   }, []);
 
+  // Enquanto o todo carrega mostra a mensagem abaixo 
   if(!todo){
     return(
       <>
@@ -47,8 +53,19 @@ export default function Home() {
       <DndProvider  backend={HTML5Backend} >
         <Header/>
         <SingOut/>
-        <Button  top="20px" right="110px" mediaRight="90px" onClick={ () => setModalVisible(true) } >Logs</Button>
-        { isModalVisible && < ModalLogs onClose={() => setModalVisible(false) } /> }
+        {/* Botam dos logs é um componente de estilo */}
+        <Button 
+          top="20px" 
+          right="110px" 
+          mediaRight="90px" 
+          onClick={ () => setModalVisible(true) } 
+        >Logs</Button>
+        {/* Estado do modal */}
+        { 
+          isModalVisible 
+          && 
+          < ModalLogs onClose={() => setModalVisible(false) } /> 
+        }
         <Board data={todo} />
         <GlobalStyle />
       </DndProvider>

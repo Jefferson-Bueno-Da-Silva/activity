@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const ModalDiv = styled.div`
+  /* componente que preenche toda a tela */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -14,65 +15,55 @@ export const ModalDiv = styled.div`
 `;
 
 export const Form = styled.div`
+  /* componente do formulário */
   display: flex;
   flex-direction: column;
-  flex:1;
+  flex: 7;
   justify-content: center;
-
-  border-radius: 5px;
   background-color: #f2f2f2;
   padding: 20px;
-
+  /* label */
+  label {
+    padding: 12px 12px 12px 0;
+    display: inline-block;
+  }
+  /* inputs */
   input[type=text], select, textarea {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  resize: vertical;
-}
-
-label {
-  padding: 12px 12px 12px 0;
-  display: inline-block;
-}
-
-input[type=submit] {
-  background-color: #4CAF50;
-  color: white;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  float: right;
-}
-
-input[type=submit]:hover {
-  background-color: #45a049;
-}
-
-.col-25 {
-  float: left;
-  width: 25%;
-  margin-top: 6px;
-}
-
-.col-75 {
-  float: left;
-  width: 75%;
-  margin-top: 6px;
-}
-
-/* Clear floats after the columns */
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+  }
+  input[type=submit] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    float: right;
+  }
+  input[type=submit]:hover {
+    background-color: #45a049;
+  }
+  /* coluna 1 */
+  .col-10 {
+    float: left;
+    width: 10%;
+    margin-top: 6px;
+  }
+  /* coluna 2 */
+  .col-90 {
+    float: left;
+    width: 90%;
+    margin-top: 6px;
+  }
 `;
 
 
 export const Container = styled.div`
-
+  /* componente central */
   background: #FFF;
   color: #000;
   width: 80%;
@@ -81,34 +72,30 @@ export const Container = styled.div`
   cursor: normal;
   display:flex;
   flex-direction:column;
-
+  /* Cabeçalho */
   header {
     display: flex;
     justify-content : center;
     align-items: center;
     height: 42px;
     width: 100%;
-
+    /* Estilo do titulo */
     h2 {
       font-weight: 500;
       font-size: 16px;
       padding: 0 10px;
     }
-
+    /* estilo do botão */
     button {
       width: 42px;
       height: 42px;
       border-radius: 18px;
-      background: #3b5bfd;
+      background: #7159c1;
       border: 0;
       cursor: pointer;
     }
   }
-
-  ul{
-    margin-top: 30px;
-  }
-
+  /* botão fechar */
   .close{
     position: absolute;
     top: 16%;
@@ -116,61 +103,46 @@ export const Container = styled.div`
     height: 30px;
     width: 30px
   }
-  .save{
-    position: absolute;
-    bottom: 16%;
-    right: 11%;
-    width: 100px;
-    height: 42px;
-    color: #FFF;
-    
-    border-radius: 18px;
-    background: #3b5bfd;
-    border: 0;
-    cursor: pointer;
-  }
-  
-  .cancel{
-    background-color:#FFF;
-    position: absolute;
-    bottom: 16%;
-    right: 24%;
-    width: 100px;
-    height: 42px;
-    color: #FFF;
-    color: #000;
-    border: 2px solid #3b5bfd;   
-    border-radius: 18px;
-  }
+  footer{
+    /* botão salvar */
+    display: flex;
+    flex: 1;
+    justify-content: flex-end;
 
-  @media screen and (max-width: 600px) {
-    .col-25, .col-75, input[type=submit] {
-      width: 100%;
-      margin-top: 0;
-    }
+    background-color: #f2f2f2;
+
     .save{
-      position: absolute;
-      bottom: 16%;
-      right: 11%;
-      width: 70px;
+      width: 100px;
       height: 42px;
       color: #FFF;
       border-radius: 18px;
-      background: #3b5bfd;
+      background: #7159c1;
       border: 0;
       cursor: pointer;
+      margin: 0 1%;
+      font-size: 18px;
+      font-weight: bold;
     }
+
+    /* botão cancelar */
     .cancel{
       background-color:#FFF;
-      position: absolute;
-      bottom: 16%;
-      right: 32%;
-      width: 70px;
+      width: 100px;
       height: 42px;
       color: #FFF;
       color: #000;
-      border: 2px solid #3b5bfd;
+      border: 2px solid #7159c1;   
       border-radius: 18px;
+      margin: 0 1%;
+      font-size: 15px;
+      font-weight: bold;
+    }
+  }
+  /* responsivo */
+  @media screen and (max-width: 600px) {
+    .col-10, .col-90, input[type=submit] {
+      width: 100%;
+      margin-top: 0;
     }
   }
 `;

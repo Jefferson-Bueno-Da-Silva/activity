@@ -76,7 +76,7 @@ export default function Modal({ id="modal", onClose = () => {}, initialState }){
     <ModalDiv id={id} onClick={handleOutsideClick} value={title}  >
       <Container>
         <header>
-          <h2>Add Item</h2>
+          <h2>Adicionar ou editar um item</h2>
           <button className="close" onClick={onClose} >
             <MdClose size={24} color="#FFF" />
           </button>
@@ -85,10 +85,10 @@ export default function Modal({ id="modal", onClose = () => {}, initialState }){
         <Form>
           
           <div className="row">
-            <div className="col-25">
+            <div className="col-10">
               <label htmlFor="fname">Titulo</label>
             </div>
-            <div className="col-75">
+            <div className="col-90">
               <input 
                 className="textInput"
                 type="text" 
@@ -100,10 +100,10 @@ export default function Modal({ id="modal", onClose = () => {}, initialState }){
           </div>
 
           <div className="row">
-            <div className="col-25">
-              <label htmlFor="lname">descrição</label>
+            <div className="col-10">
+              <label htmlFor="lname">Descrição</label>
             </div>
-            <div className="col-75">
+            <div className="col-90">
               <input 
                 className="textInput" 
                 type="text" 
@@ -115,10 +115,10 @@ export default function Modal({ id="modal", onClose = () => {}, initialState }){
           </div>
 
           <div className="row">
-            <div className="col-25">
-              <label htmlFor="user">usuário responsável</label>
+            <div className="col-10">
+              <label htmlFor="user">Responsável</label>
             </div>
-            <div className="col-75">
+            <div className="col-90">
               <select id="user" name="user" onChange={ handleOnChange } >
 
                 <option id="user" key="0" value="123" ></option>
@@ -139,12 +139,13 @@ export default function Modal({ id="modal", onClose = () => {}, initialState }){
           </div>
         
 
-          <button className="save" onClick={ createTodoSync } > Save </button>
-          <button className="cancel" onClick={onClose} > Cancel </button>
+
         </Form>
-        
-        
-        
+
+        <footer>
+          <button className="cancel" onClick={onClose} > Cancelar </button>
+          <button className="save" onClick={ createTodoSync } > Salvar </button>
+        </footer>     
 
       </Container>
     </ModalDiv>
