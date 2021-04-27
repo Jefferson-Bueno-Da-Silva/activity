@@ -1,5 +1,5 @@
 import React, { useCallback, useContext, useState } from 'react';
-import { withRouter, Redirect, Link } from 'react-router-dom';
+import { withRouter, Redirect } from 'react-router-dom';
 
 // Auth
 import firebase from '../../configs/firebaseConfigs';
@@ -13,22 +13,26 @@ import GlobalStyles from '../../styles/global';
 // Components
 import Header from "../../components/Header/";
 
-export const SingIn = withRouter( ({ history }) => {
+export const SingUp = withRouter( ({ history }) => {
   // Estado do erro no login
   const [error , setError] = useState(false);
 
   // Autenticação Firebase
-  const loginFunc = useCallback(
+  const SingUpFunc = useCallback(
     async (event) => {
       // Não da reload na pagina
       event.preventDefault();
-      const { email, senha } = event.target.elements;
+      const { email, senha, reSenha } = event.target.elements;
       try {
-        await firebase.auth().signInWithEmailAndPassword(email.value, senha.value);
-        history.push('/home');
+        if(reSenha.value === senha.value){
+          await firebase.auth().createUserWithEmailAndPassword(email.value, senha.value);
+          history.push('/home');
+        }else{
+          setError("As senhas não batem! ");
+        }
       }catch (error){
         console.log(error.message);
-        setError(true);
+        setError("Verifique o usuario e a senha");
       }
     },
     [history],
@@ -45,13 +49,13 @@ export const SingIn = withRouter( ({ history }) => {
     <>
       <Header/>
       <Container>
-        <form className="inputSingIn" onSubmit={ loginFunc } >
-          <h1>Sing In</h1>
-          {error ? <p style={{ color: "red" }}>Email ou Senha inválidos</p> : ""}
+        <form className="inputSingIn" onSubmit={ SingUpFunc } >
+          <h1>Sing Up</h1>
+          {error ? <p style={{ color: "red" }}>{error}</p> : ""}
           <input type="email" name="email" placeholder="Username" required/>
           <input type="password" name="senha" placeholder="Password" required/>
+          <input type="Password" name="reSenha" placeholder="Password" required/>
           <input type="submit" />
-          <p>Não esta cadastrado ? <Link color="#7159c1" to="/redirect">Cadastrar</Link> </p>
         </form>
         <GlobalStyles/>
       </Container>

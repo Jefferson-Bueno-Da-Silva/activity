@@ -22,21 +22,23 @@ export default function ModalLogs({ id="modal", onClose = () => {} }){
 
   // Função para formatar o texto
   function showLogs(){
-    let key = (Object.keys( !!logValue ));
-    let strLogs = ``;
-    key.map( (key) => {
-      console.log(logValue[key]);
-      strLogs += (
-
-`O usuario: ${logValue[key].email}
+    if(logValue){
+      let key = (Object.keys( logValue ));
+      let strLogs = ``;
+      key.map( (key) => {
+        console.log(logValue[key]);
+        strLogs +=
+(`O usuario: ${logValue[key].email}
 alterou o card: "${logValue[key].card.title}"
 de: "${logValue[key].fromName}"
 para:"${logValue[key].toName}"
-${Date(logValue[key].created_at)}\n\n`
-    );
-    return key;
-    } )
-    return strLogs;
+${Date(logValue[key].created_at)}\n\n`);
+        return key;
+      } )
+      return strLogs;
+
+    }
+
   }
   // clicar fora para sair
   const handleOutsideClick = (e) => {
