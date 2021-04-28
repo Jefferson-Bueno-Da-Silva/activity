@@ -10,6 +10,6 @@ export default function SingOut(){
     auth.singOut();
   }
   return(
-    <Button top="3%" right="2%" onClick={ () => Logout() } >Sair</Button>
+    <Button top="20px" right="20px" mediaRight="3px" onClick={ () => Logout() } >Sair</Button>
   );
 }
