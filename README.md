@@ -7,8 +7,6 @@ Password : ```123456789```
 
 A primeira coisa que eu pensei quando vi a prova foi em kanban, apesar de ter me dado muita dor de cabeça principalmente quando começei pois não fazia ideia de como criar o "agarrar" e "soltar", mas ao decorrer do projeto eu pude aplicar muitas coisas interessantes como por exemplo o "web Socket" do firebase e fazer meus cards se atualizaram automaticamente quando há uma alteração no banco.
 
-Aprendi vários conceitos legais do react como o drag e drop, que apesar de ter me dado uma dor de cabeça foi muito legal de executar. Eu gostei de ter criado essa aplicação, bem como o desafio de criar tudo isso em um final de semana.
-
 ## O projeto
 
 Uma aplicação WEB, desenhada para controlar atividades.
