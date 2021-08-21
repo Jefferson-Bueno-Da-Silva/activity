@@ -9,17 +9,6 @@ A primeira coisa que eu pensei quando vi a prova foi em kanban, apesar de ter me
 
 Aprendi vários conceitos legais do react como o drag e drop, que apesar de ter me dado uma dor de cabeça foi muito legal de executar. Eu gostei de ter criado essa aplicação, bem como o desafio de criar tudo isso em um final de semana.
 
-## O que eu faria diferente ?
-
-Seria um pouco menos ambicioso, uma aplicação mais simples.
-Claro que com um tempo maior de execução eu teria terminado outras funcionalidades que tinha em mente, mas se um dia der continuidade a este projeto com certeza ja ele ja esta preparado para receber novas atualizações, como por exemplo um botão que adiciona mais estados (filas).
-
-## Resumo
-
-Apesar de no começo eu ter ficado bem assustado eu acho que me sai bem com a execução.
-
-Aprendi muita coisa nova, se eu fosse fazer de novo com toda certeza a experiência que eu tenho agora me faria avançar muito mais rápido.
-
 ## O projeto
 
 Uma aplicação WEB, desenhada para controlar atividades.
